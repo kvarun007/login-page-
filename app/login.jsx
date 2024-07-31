@@ -12,6 +12,7 @@ export default function Login(){
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
     //const [token2, setToken2] = useState("");
+    const [incPassword, setIncPassword]= useState(false);
     const router = useRouter();
     const { token, setToken } = useToken();
     
@@ -43,8 +44,16 @@ export default function Login(){
           })
 
           const data = await res.json()
-          console.log(data.acessToken)
-          setToken(data.acessToken)
+          console.log(token)
+          
+          if(data.acessToken !== undefined){
+            //console.log(data.acessToken)
+            setToken(data.acessToken)
+          }else{
+            //console.log("came")
+            setIncPassword(true);
+          }
+          
         //   setToken2(token)
         //   console.log(token)  
     }
@@ -66,6 +75,7 @@ export default function Login(){
                         <input type="text " className ="  border-[#9A9994] outline-none bg-[#333333] border-b-2 w-64 " onChange={(e)=>{setPassword(e.target.value)}}/>
                     </div>
                 </form>
+                {incPassword == true ?<div>Invaild password and user </div> :null}
                 <button className="border-2 border-[#9A9994] hover:bg-[#3c3c3c] w-32 h-12 mt-[-2] text-M" onClick={(e)=>{submitLogin()}}>SUBMIT</button>
             
             </div>
