@@ -11,16 +11,16 @@ import { useToken } from "./context/TokenContext";
 export default function Login(){
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
-    const [token2, setToken2] = useState("");
+    //const [token2, setToken2] = useState("");
     const router = useRouter();
     const { token, setToken } = useToken();
     
 
     useEffect(()=>{
-        if (token2) {
+        if (token) {
             router.push("/root");
         }
-    },[token2])
+    },[token])
 
 
 
@@ -45,8 +45,8 @@ export default function Login(){
           const data = await res.json()
           console.log(data.acessToken)
           setToken(data.acessToken)
-          setToken2(token)
-          console.log(token)  
+        //   setToken2(token)
+        //   console.log(token)  
     }
 
     
